@@ -1,4 +1,4 @@
-<p><img src="https://media.giphy.com/media/fVVbPBbJU21r6Qut8E/giphy.gif"></p>
+![Poster Homepage](https://i.imgur.com/DDSz7CW.png)
 
 
 ## Laravel Vue Spa Starter Template
