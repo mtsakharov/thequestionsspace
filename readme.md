@@ -14,6 +14,7 @@
 
 ## Installation
 - `git clone https://github.com/mtsakharov/vue-spa-start.git`
+- `composer install`
 - Edit `.env` and set your database connection details
 - Generate app key via `php artisan key:generate`
 - `php artisan migrate` run migrations
