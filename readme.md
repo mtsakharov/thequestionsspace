@@ -1,7 +1,7 @@
-<p align="center"><img src="https://media.giphy.com/media/fVVbPBbJU21r6Qut8E/giphy.gif"></p>
+<p><img src="https://media.giphy.com/media/fVVbPBbJU21r6Qut8E/giphy.gif"></p>
 
 
-##Laravel Spa Starter Template
+## Laravel Spa Starter Template
 
 ## Features
 
