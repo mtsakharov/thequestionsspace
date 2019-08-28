@@ -13,7 +13,7 @@
 - Bootstrap 4
 
 ## Installation
-- `composer create-project --prefer-dist mtsakharov/vue-spa-start`
+- `git clone https://github.com/mtsakharov/vue-spa-start.git`
 - Edit `.env` and set your database connection details
 - Generate app key via `php artisan key:generate`
 - `php artisan migrate` run migrations
