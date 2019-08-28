@@ -1,7 +1,7 @@
 <p><img src="https://media.giphy.com/media/fVVbPBbJU21r6Qut8E/giphy.gif"></p>
 
 
-## Laravel Spa Starter Template
+## Laravel Vue Spa Starter Template
 
 ## Features
 
