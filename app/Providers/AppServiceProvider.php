@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Laravel\Passport\PassportServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,10 +14,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        \Laravel\Passport\Passport::ignoreMigrations();
+       PassportServiceProvider::class;
     }
 
-    /**
+    /*
      * Bootstrap any application services.
      *
      * @return void

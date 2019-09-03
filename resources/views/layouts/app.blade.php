@@ -23,7 +23,7 @@
 <div id="app">
     <navigation-bar></navigation-bar>
 
-    <main class="py-4">
+    <main>
         <vue-progress-bar></vue-progress-bar>
 
         <transition name="fade">

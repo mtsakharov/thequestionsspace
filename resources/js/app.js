@@ -26,7 +26,7 @@ if (TokenService.getToken()) {
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('navigation-bar', require('./components/template/navigation_bar.vue').default);
+Vue.component('navigationBar', require('./components/template/navigation_bar.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -49,3 +49,5 @@ router.beforeResolve((to, from, next) => {
 router.afterEach((to, from) => {
     NProgress.done()
 });
+
+

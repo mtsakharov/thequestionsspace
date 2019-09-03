@@ -1,30 +1,34 @@
 import { UserService, AuthenticationError } from '../services/user.service';
 import { TokenService } from '../services/storage.service';
 import router from '../router';
+import ApiService from "../services/api.service";
+
 
 const state =  {
     user: null,
     authenticating: false,
     accessToken: TokenService.getToken(),
-    ErrorCode: 0,
-    ErrorMessage: '',
+    authenticationErrorCode: 0,
+    authenticationError: '',
+    ErrorMessage:'',
     registerErrorCode: 0,
     registerError: '',
     refreshTokenPromise: null,
+    getUserError: '',
 
 };
 
 const getters = {
     loggedIn: (state) => {
-        return !!state.accessToken
+        return state.accessToken ? true : false
     },
 
-    getErrorCode: (state) => {
-        return state.ErrorCode
+    authenticationErrorCode: (state) => {
+        return state.authenticationErrorCode
     },
 
-    getErrorMessage: (state) => {
-        return state.ErrorMessage
+    authenticationError: (state) => {
+        return state.authenticationError
     },
 
     registerError: (state) => {
@@ -49,10 +53,8 @@ const actions = {
 
             commit('loginSuccess', token);
 
-
             // Redirect the user to the page he first tried to visit or to the home view
             await router.push(router.history.current.query.redirect || '/');
-
 
             return true
         } catch (e) {
@@ -78,12 +80,30 @@ const actions = {
             return true
         } catch (e) {
             if (e instanceof AuthenticationError) {
-                commit('registerError', {errorCode: e.errorCode, errorMessage: e.message})
+                commit('RegisterError', {errorCode: e.errorCode, errorMessage: e.message})
             }
 
             return false
         }
     },
+
+    async updateUser({ commit }, {id, name, email, avatar}) {
+        try {
+            await UserService.updateUser(id, name, email, avatar);
+
+            // Redirect the user to the page he first tried to visit or to the home view
+            await router.push('/profile');
+
+            return true
+        } catch (e) {
+            if (e instanceof AuthenticationError) {
+                commit('RegisterError', {errorCode: e.errorCode, errorMessage: e.message})
+            }
+
+            return false
+        }
+    },
+
 
     logout: function ({commit}) {
         UserService.logout();
@@ -95,14 +115,14 @@ const actions = {
         // If this is the first time the refreshToken has been called, make a request
         // otherwise return the same promise to the caller
         if(!state.refreshTokenPromise) {
-            const p = UserService.refreshToken();
-            commit('refreshTokenPromise', p);
+            const p = UserService.refreshToken()
+            commit('refreshTokenPromise', p)
 
             // Wait for the UserService.refreshToken() to resolve. On success set the token and clear promise
             // Clear the promise on error as well.
             p.then(
                 response => {
-                    commit('refreshTokenPromise', null);
+                    commit('refreshTokenPromise', null)
                     commit('loginSuccess', response)
                 },
                 error => {
@@ -142,18 +162,18 @@ const mutations = {
 
     loginError(state, {errorCode, errorMessage}) {
         state.authenticating = false;
-        state.ErrorCode = errorCode;
-        state.ErrorMessage = errorMessage
+        state.authenticationErrorCode = errorCode;
+        state.authenticationError = errorMessage
     },
 
-    registerError(state, {errorCode, errorMessage}) {
+    RegisterError(state, {errorCode, errorMessage}) {
         state.authenticating = false;
-        state.ErrorCode = errorCode;
-        state.ErrorMessage = errorMessage;
+        state.registerErrorCode = errorCode;
+        state.registerError = errorMessage
     },
 
     getUserError(state, {errorMessage}) {
-        state.ErrorMessage = errorMessage;
+        state.getUserError = errorMessage;
     },
 
     logoutSuccess(state) {
@@ -170,8 +190,7 @@ const mutations = {
     },
 
     clearError(state){
-        state.ErrorCode = '';
-        state.ErrorMessage = '';
+        state.authenticationError = ''
     },
 };
 

@@ -1,13 +1,86 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900&display=swap&subset=cyrillic,latin-ext,vietnamese');
 
 // Variables
 @import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import url(avatar.sccs);
 
 @import '../../node_modules/nprogress/nprogress.css';
+
+//FilePond
+@import '../../node_modules/filepond/dist/filepond.min.css';
+
+//FilePond image preview plugin
+@import '../../node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css';
+
+
+a {
+    text-decoration: none !important
+}
+.navbar-expand-md .navbar-nav {
+    padding-right: 3.5rem;
+}
+.dropdown-menu {
+    margin-top: .75rem;
+}
+
+.dropdown-menu::before {
+    border-bottom: 9px solid rgba(0, 0, 0, 0.2);
+    border-left: 9px solid rgba(0, 0, 0, 0);
+    border-right: 9px solid rgba(0, 0, 0, 0);
+    content: "";
+    display: inline-block;
+    left: 86px;
+    position: absolute;
+    top: -8px;
+}
+.dropdown-menu::after {
+    border-bottom: 8px solid #FFFFFF;
+    border-left: 9px solid rgba(0, 0, 0, 0);
+    border-right: 9px solid rgba(0, 0, 0, 0);
+    content: "";
+    display: inline-block;
+    left: 86px;
+    position: absolute;
+    top: -7px;
+}
+
+body {
+   background-color: #f4f2ef;
+}
+
+.feather {
+    width: 18px;
+    height: 18px;
+    vertical-align: text-top;
+}
+svg {
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+
+.nav-link {
+    font-weight: 500;
+    color: #333;
+}
+
+.nav-link .feather {
+    color: #999;
+}
+
+.nav-link.active {
+    color: #007bff;
+}
+
+.nav-link:hover .feather,
+.nav-link.active .feather {
+    color: inherit;
+}
 
 .fade-enter-active, .fade-leave-active {
     transition-property: opacity;

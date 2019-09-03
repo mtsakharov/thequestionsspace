@@ -1,0 +1,18 @@
+//
+//
+// avatar.scss
+//
+// A set of shortcut classes for <img> element to make them round and size them appropirately for a range of avatar and media uses
+
+.media > .avatar:first-child {
+    margin-right: 1.5rem;
+}
+.avatar.avatar-xlg {
+    width: 12rem;
+    height: 12rem;
+}
+.avatar {
+    border-radius: 50%;
+    width: 4.5rem;
+    height: 4.5rem;
+}

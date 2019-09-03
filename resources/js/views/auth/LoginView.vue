@@ -1,13 +1,14 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-8 py-5">
                 <div class="card">
                     <div class="card-header">Login</div>
 
+
                     <div class="card-body">
 
-                        <form method="POST" @submit.prevent="handleSubmit" @keydown="delete ErrorMessage[$event.target.name]">
+                        <form method="POST" @submit.prevent="handleSubmit" @keydown="delete authenticationError[$event.target.name]">
 
 
                             <div class="form-group row">
@@ -17,7 +18,7 @@
                                     <input id="email" type="email" class="form-control" name="email" v-model="email">
 
 
-                                    <strong  v-if="ErrorMessage.email" class="">{{ ErrorMessage.email[0] }}</strong>
+                                    <strong  v-if="authenticationError.email" class="">{{ authenticationError.email[0] }}</strong>
 
                                 </div>
                             </div>
@@ -29,7 +30,7 @@
                                     <input id="password" type="password" name="password" class="form-control" v-model="password">
 
 
-                                    <strong v-if="ErrorMessage.password" class="error">{{ ErrorMessage.password[0] }}</strong>
+                                    <strong v-if="authenticationError.password" class="error">{{ authenticationError.password[0] }}</strong>
 
                                 </div>
                             </div>
@@ -69,10 +70,8 @@
 
 <script>
     import {mapState, mapGetters, mapActions, mapMutations } from "vuex";
-
     export default {
         name: "login",
-
         data() {
             return {
                 email: "",
@@ -80,40 +79,39 @@
             };
         },
 
+        mounted() {
+            this.clearError()
+        },
         computed: {
+
             ...mapState('auth', [
-                'ErrorMessage',
-                'ErrorCode'
+                'authenticationError',
+                'accessToken'
             ]),
 
             ...mapGetters('auth', [
                 'authenticating',
+                'authenticationError',
+                'authenticationErrorCode'
             ]),
 
             ...mapMutations('auth', [
                 'clearError'
             ]),
         },
-
-        mounted() {
-            if (this.ErrorMessage !== ''){
-                this.clearError();
-            }
-        },
-
         methods: {
-            ...mapActions('auth',[
+            ...mapActions('auth', [
                 'login',
-                'getUser'
             ]),
 
             handleSubmit() {
                 // Perform a simple validation that email and password have been typed in
-                this.login({email: this.email, password: this.password});
 
+                    this.login({email: this.email, password: this.password});
+                    this.email = "";
+                    this.password = "";
             },
-
-
         }
     };
 </script>
+

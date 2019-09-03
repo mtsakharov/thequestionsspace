@@ -80,6 +80,30 @@ const UserService = {
     },
 
     /**
+     * Register the user and store the access token to TokenService.
+     *
+     * @returns access_token
+     * @throws AuthenticationError
+     **/
+    updateUser: async function(id, name, email, avatar) {
+        const requestData = {
+            method: 'post',
+            url: "/api/users/user/"+id+"/update",
+            data: {
+                name: name,
+                email: email,
+                avatar: avatar,
+            }
+        };
+        try {
+            const response = await ApiService.customRequest(requestData);
+            return response.data;
+        } catch (error) {
+            throw new AuthenticationError(error.response.status, error.response.data.errors);
+        }
+    },
+
+    /**
      * Refresh the access token.
      **/
     refreshToken: async function() {
@@ -138,12 +162,14 @@ const UserService = {
         try {
             const response = await ApiService.customRequest(requestData);
 
-            return response.data;
+            return response.data.data;
         } catch (error) {
             throw new AuthenticationError(error.response.data.status, error.response.data.errors)
         }
 
     },
+
+
 };
 
 export default UserService
