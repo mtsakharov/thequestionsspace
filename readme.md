@@ -1,4 +1,4 @@
-![Poster Homepage](https://i.imgur.com/DDSz7CW.png)
+![Poster Homepage](https://i.imgur.com/KsnAFMp.jpg)
 
 
 ## TheQuestions - Laravel Vue Spa Questions/Answers App
