@@ -1,7 +1,7 @@
 ![Poster Homepage](https://i.imgur.com/DDSz7CW.png)
 
 
-## Laravel Vue Spa Starter Template
+## TheQuestions - Laravel Vue Spa Questions/Answers App
 
 ## Features
 
@@ -20,6 +20,5 @@
 - `php artisan migrate` run migrations
 - Install passport via `php artisan passport:install`
 - Run `npm install`
-
 
 # thequestionsspace
