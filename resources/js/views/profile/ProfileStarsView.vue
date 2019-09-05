@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <sidebar></sidebar>
             <div class="col-lg-8">
-                <card-question-component v-for="(question, index) in this.user.bookmarks" :key="index" :question="question"></card-question-component>
+                <answer-card-component v-for="(answer, index) in this.user.stars" :key="index" :answer="answer"></answer-card-component>
             </div>
         </div>
     </div>
@@ -12,11 +12,11 @@
 <script>
     import {mapState, mapActions } from "vuex";
     import sidebar from "../../components/profile/SidebarMenuComponent";
-    import CardQuestionComponent from "../../components/questions/CardQuestionComponent";
+    import AnswerCardComponent from "../../components/answers/AnswerCardComponent";
 
 
     export default {
-        components: {sidebar, CardQuestionComponent},
+        components: {sidebar, AnswerCardComponent},
 
         computed:{
             ...mapState('auth', [
@@ -27,6 +27,10 @@
             ...mapActions('auth', [
                 'getUser'
             ]),
+
+            // removeAnswer(index){
+            //     this.$delete(this.user.stars, index, 1);
+            // },
         },
 
         mounted() {

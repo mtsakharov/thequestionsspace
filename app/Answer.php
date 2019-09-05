@@ -28,4 +28,25 @@ class Answer extends Model
     {
         return $this->belongsTo(Question::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function stars()
+    {
+        return $this->belongsToMany('App\User', 'user_answer');
+
+    }
+
+    /**
+     * @param $user
+     * @return bool
+     */
+    public function isStared()
+    {
+        return ! ! $this->stars()->where('user_id', auth()->guard('api')->user()->id)->count();
+    }
 }

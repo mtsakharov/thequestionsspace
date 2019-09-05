@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class QuestionResource extends JsonResource
@@ -21,7 +22,9 @@ class QuestionResource extends JsonResource
             'category' => $this->category,
             'views' => $this->views,
             'user' => $this->user,
-            'answers' => AnswerResource::collection($this->answers),
+            'bookmarks' => $this->userBookMarks,
+            'marked' => $this->isMarked(),
+            'answers' => $this->answers->load('user', 'stars', 'question'),
             'created_at' => $this->created_at,
         ];
     }

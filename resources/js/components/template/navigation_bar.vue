@@ -32,10 +32,10 @@
                         </router-link>
                     </li>
 
-                    <li class="nav-item dropdown" v-if="this.loggedIn">
+                    <li class="nav-item dropdown">
                         <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                            {{ this.user.name }}
+                          {{ this.user.name }}
                         </a>
                         <div class="dropdown-menu">
                             <router-link class="dropdown-item" to="/profile">Profile</router-link>
@@ -77,29 +77,22 @@
 </template>
 
 <script>
-    import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
+    import { mapState, mapGetters, mapActions } from "vuex";
 
     export default {
+
         computed: {
             ...mapState('auth', [
                 'user',
-                'getUserError',
-                'accessToken'
-            ]),
 
-            ...mapGetters('auth', [
-                'loggedIn',
-                'authenticating',
-                'authenticationError',
-                'authenticationErrorCode',
+                'getUserError',
             ]),
+            ...mapGetters('auth', [
+                'loggedIn'
+            ])
         },
 
         methods: {
-            ...mapMutations('question', [
-                'clearError'
-            ]),
-
             ...mapActions('auth', [
                 'login',
                 'logout',
@@ -110,7 +103,7 @@
         mounted() {
             console.log('Component mounted.');
 
-            if (this.accessToken){
+            if (this.loggedIn){
                 this.getUser();
             }
         }

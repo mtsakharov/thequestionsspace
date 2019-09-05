@@ -24,7 +24,6 @@
     <navigation-bar></navigation-bar>
 
     <main>
-        <vue-progress-bar></vue-progress-bar>
 
         <transition name="fade">
             <router-view></router-view>

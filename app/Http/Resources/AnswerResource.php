@@ -20,6 +20,8 @@ class AnswerResource extends JsonResource
             'question_id' => $this->question_id,
             'user_id' => $this->user_id,
             'user' => $this->user,
+            'stars' => $this->stars,
+            'stared' => $this->isStared(),
             'created_at' => $this->created_at
         ];
     }

@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <sidebar></sidebar>
             <div class="col-lg-8">
-                <ListQuestionAnswersComponent v-for="(answer, index) in this.user.answers" :key="index" :answer="answer"  @deleted="removeAnswer(index)"></ListQuestionAnswersComponent>
+                <list-question-answers-component v-for="(answer, index) in this.user.answers" :key="index" :answer="answer"  @deleted="removeAnswer(index)"></list-question-answers-component>
             </div>
         </div>
     </div>

@@ -1,9 +1,5 @@
 <?php
-
-use App\Http\Resources\AnswerResource;
-use App\Http\Resources\QuestionResource;
 use App\Http\Resources\UserResource;
-use App\Question;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -19,7 +15,7 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return new UserResource(User::find($request->user('api')->id));
+    return new UserResource(User::findOrFail($request->user('api')->id));
 });
 
 Route::get('/questions', 'Api\QuestionsController@index');
@@ -28,11 +24,16 @@ Route::post('/questions/question/store', 'Api\QuestionsController@store');
 Route::post('/questions/question/image/upload', 'Api\QuestionsController@image');
 Route::post('/questions/question/{question}/update', 'Api\QuestionsController@update');
 Route::post('/questions/question/{question}/delete', 'Api\QuestionsController@destroy');
+Route::post('/questions/question/{question}/{user}/bookmark/attach', 'Api\UsersController@attachBookmark');
+Route::post('/questions/question/{question}/{user}/bookmark/detach', 'Api\UsersController@detachBookmark');
 
 Route::post('/answers/answer/store', 'Api\AnswersController@store');
 Route::get('/questions/question/{question}/answers', 'Api\AnswersController@index');
 Route::post('/answers/answer/{answer}/update', 'Api\AnswersController@update');
 Route::post('/answers/answer/{answer}/delete', 'Api\AnswersController@destroy');
+
+Route::post('/answers/answer/{answer}/{user}/attach', 'Api\UsersController@attachStar');
+Route::post('/answers/answer/{answer}/{user}/detach', 'Api\UsersController@detachStar');
 
 Route::get('/categories', 'Api\CategoriesController@index');
 Route::post('/categories/category/store', 'Api\CategoriesController@store');

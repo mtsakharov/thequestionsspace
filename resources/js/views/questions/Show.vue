@@ -6,8 +6,15 @@
             </div>
         </section>
 
-        <CreateQuestionAnswerComponent @completed="pushAnswer" :question="this.question" :user="this.user"></CreateQuestionAnswerComponent>
-        <ListQuestionAnswersComponent v-for="(answer, index) in question.answers" :key="index" :answer="answer"  @deleted="removeAnswer(index)"></ListQuestionAnswersComponent>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <create-question-answer-component @completed="pushAnswer" :question="this.question" :user="this.user"></create-question-answer-component>
+
+                    <answer-card-component v-for="(answer, index) in question.answers" :key="index" :answer="answer"  @deleted="removeAnswer(index)"></answer-card-component>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -15,10 +22,10 @@
     import { mapState, mapActions } from "vuex";
 
     import CreateQuestionAnswerComponent from "../../components/answers/CreateQuestionAnswerComponent";
-    import ListQuestionAnswersComponent from "../../components/answers/ListQuestionAnswersComponent";
+    import answerCardComponent from "../../components/answers/AnswerCardComponent";
 
     export default {
-        components:{ListQuestionAnswersComponent, CreateQuestionAnswerComponent},
+        components:{answerCardComponent, CreateQuestionAnswerComponent},
 
         computed:{
             ...mapState('question', [

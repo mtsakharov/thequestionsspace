@@ -54,19 +54,30 @@ class User extends Authenticatable
         return $this->hasMany(Answer::class);
     }
 
-//    /**
-//     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-//     */
-//    public function bookmarks()
-//    {
-//        return $this->belongsToMany(User::class, 'bookmarks', 'bookmark_id', 'user_id')->withTimestamps();
-//    }
-//
-//    /**
-//     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-//     */
-//    public function stars()
-//    {
-//        return $this->belongsToMany(User::class, 'stars', 'answer_id', 'user_id')->withTimestamps();
-//    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function bookmarks()
+    {
+        return $this->belongsToMany('App\Question', 'user_question');
+    }
+
+    /**
+     * Determine if the current reply has been favorited.
+     *
+     * @return boolean
+     */
+    public function isFavorited()
+    {
+        return ! ! $this->bookmarks()->where('user_id', auth()->id())->count();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function stars()
+    {
+        return $this->belongsToMany('App\Answer', 'user_answer');
+
+    }
 }

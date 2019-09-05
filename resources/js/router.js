@@ -12,6 +12,8 @@ import ProfileAnswersView from "./views/profile/ProfileAnswersView";
 import ProfileSettingsView from "./views/profile/ProfileSettingsView";
 import ListCategoriesView from "./views/categories/ListCategoriesView";
 import ShowCategoryView from "./views/categories/ShowCategoryView";
+import ProfileBookmarksView from "./views/profile/ProfileBookmarksView";
+import ProfileStarsView from "./views/profile/ProfileStarsView";
 
 Vue.use(Router);
 
@@ -81,7 +83,17 @@ const router =  new Router({
         {
             path: '/profile/bookmarks',
             name: 'profileBookmarks',
-            component: ProfileView,
+            component: ProfileBookmarksView,
+            meta: {
+                public: false,  // Allow access to even if not logged in
+                onlyWhenLoggedIn:true
+            }
+        },
+
+        {
+            path: '/profile/stars',
+            name: 'profileStars',
+            component: ProfileStarsView,
             meta: {
                 public: false,  // Allow access to even if not logged in
                 onlyWhenLoggedIn:true

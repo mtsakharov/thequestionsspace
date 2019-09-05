@@ -37,4 +37,25 @@ class Question extends Model
     {
         return $this->hasMany(Answer::class);
     }
+
+    /**
+     * @param $user
+     * @return bool
+     */
+    public function isMarked()
+    {
+        if (auth('api')->check()){
+            return ! ! $this->userBookMarks()->where('user_id', auth()->guard('api')->user()->id)->count();
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function userBookMarks()
+    {
+        return $this->belongsToMany(User::class, 'user_question');
+    }
 }

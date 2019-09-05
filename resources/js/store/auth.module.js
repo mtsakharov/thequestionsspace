@@ -5,7 +5,7 @@ import ApiService from "../services/api.service";
 
 
 const state =  {
-    user: null,
+    user: [],
     authenticating: false,
     accessToken: TokenService.getToken(),
     authenticationErrorCode: 0,

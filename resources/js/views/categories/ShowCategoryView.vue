@@ -1,19 +1,22 @@
 <template>
-    <div class="">
-        <section class="jumbotron text-center text-white" :style="{ background: `linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url('${category.image}'), center 40%`, backgroundSize: 'cover'}">
+    <show-category-view>
+        <section class="col-lg-12 jumbotron text-center text-white" :style="{ background: `linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url('${this.category.image}'), center 40%`, backgroundSize: 'cover'}">
             <div class="container py-5">
-                <h1 class="jumbotron-heading" style="font-family:Parfait Display,serif;">{{ this.category.name }}</h1>
+                <h1 class="jumbotron-heading" style="font-family:Parfait Display,serif;">{{ category.name }}</h1>
             </div>
         </section>
 
-        <div class="row justify-content-center">
-            <div class="col-lg-7">
-                <div class="row justify-content-center">
-                    <CardQuestionComponent class="col-lg-12" v-for="(question, index) in this.category.questions" :key="index" :question="question"></CardQuestionComponent>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <card-question-component v-for="(question, index) in this.category.questions" :key="index" :question="question"></card-question-component>
                 </div>
             </div>
         </div>
-    </div>
+
+
+    </show-category-view>
 </template>
 
 <script>

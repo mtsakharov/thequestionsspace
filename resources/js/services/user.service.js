@@ -143,6 +143,9 @@ const UserService = {
      * Will also remove `Authorization Bearer <token>` header from future requests.
      **/
     logout() {
+
+
+
         // Remove the token and remove Authorization header from Api Service as well
         TokenService.removeToken();
         TokenService.removeRefreshToken();
