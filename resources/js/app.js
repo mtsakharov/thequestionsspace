@@ -13,6 +13,8 @@ import NProgress from 'nprogress';
 // Set the base URL of the API
 ApiService.init(process.env.APP_URL);
 
+Vue.config.devtools=process.env.APP_DEVTOOL;
+
 // If token exists set header
 if (TokenService.getToken()) {
     ApiService.setHeader()

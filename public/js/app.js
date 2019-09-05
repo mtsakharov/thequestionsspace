@@ -60196,7 +60196,8 @@ __webpack_require__.r(__webpack_exports__);
 
  // Set the base URL of the API
 
-_services_api_service__WEBPACK_IMPORTED_MODULE_3__["default"].init(process.env.APP_URL); // If token exists set header
+_services_api_service__WEBPACK_IMPORTED_MODULE_3__["default"].init(process.env.APP_URL);
+Vue.config.devtools = process.env.APP_DEVTOOL; // If token exists set header
 
 if (_services_storage_service__WEBPACK_IMPORTED_MODULE_4__["TokenService"].getToken()) {
   _services_api_service__WEBPACK_IMPORTED_MODULE_3__["default"].setHeader();
